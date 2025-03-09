@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-info">
+            <div class="hold-container">
+                <h3>HOLD</h3>
+                <div class="hold-piece" id="hold-piece"></div>
+            </div>
+            <div class="score-container">
+                <div class="score-box">
+                    <h3>SCORE</h3>
+                    <div id="score">0</div>
+                </div>
+                <div class="score-box">
+                    <h3>LEVEL</h3>
+                    <div id="level">1</div>
+                </div>
+                <div class="score-box">
+                    <h3>LINES</h3>
+                    <div id="lines">0</div>
+                </div>
+            </div>
+            <div class="next-container">
+                <h3>NEXT</h3>
+                <div class="next-pieces" id="next-pieces"></div>
+            </div>
+        </div>
+        <div class="tetris-container">
+            <div class="tetris-board" id="tetris-board"></div>
+            <div class="game-over-screen" id="game-over-screen">
+                <h2>GAME OVER</h2>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <button id="restart-button">Play Again</button>
+            </div>
+        </div>
+    </div>
+    <div class="controls-info">
+        <h3>Controls:</h3>
+        <ul>
+            <li>← → : Move left/right</li>
+            <li>↑ : Rotate</li>
+            <li>↓ : Soft drop</li>
+            <li>Space : Hard drop</li>
+            <li>C : Hold piece</li>
+            <li>P : Pause game</li>
+        </ul>
+    </div>
+    <script src="tetris.js"></script>
+</body>
+</html> 

@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.game-container {
+    display: flex;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.game-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 200px;
+}
+
+.hold-container, .next-container, .score-container {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.score-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.score-box {
+    text-align: center;
+}
+
+.score-box h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #9e9e9e;
+}
+
+.score-box div {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.hold-container h3, .next-container h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #9e9e9e;
+}
+
+.hold-piece, .next-pieces {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80px;
+}
+
+.next-pieces {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 240px;
+}
+
+.tetris-container {
+    position: relative;
+}
+
+.tetris-board {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    width: 300px;
+    height: 600px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.cell {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cell.filled {
+    border: none;
+}
+
+/* Tetromino colors */
+.I {
+    background-color: #00f0f0;
+}
+
+.O {
+    background-color: #f0f000;
+}
+
+.T {
+    background-color: #a000f0;
+}
+
+.S {
+    background-color: #00f000;
+}
+
+.Z {
+    background-color: #f00000;
+}
+
+.J {
+    background-color: #0000f0;
+}
+
+.L {
+    background-color: #f0a000;
+}
+
+.ghost {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px dashed rgba(255, 255, 255, 0.5);
+}
+
+.mini-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 15px);
+    grid-template-rows: repeat(4, 15px);
+    gap: 1px;
+}
+
+.mini-cell {
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+}
+
+.game-over-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    display: none;
+}
+
+.game-over-screen h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #f44336;
+}
+
+.game-over-screen p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+#restart-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#restart-button:hover {
+    background-color: #388e3c;
+}
+
+.controls-info {
+    margin-top: 30px;
+    background-color: #1e1e1e;
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 800px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.controls-info h3 {
+    margin-bottom: 10px;
+    color: #9e9e9e;
+}
+
+.controls-info ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.controls-info li {
+    background-color: #2a2a2a;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .game-info {
+        flex-direction: row;
+        width: 100%;
+    }
+    
+    .hold-container, .next-container {
+        width: 100%;
+    }
+} 
