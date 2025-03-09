@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Games Collection</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f0f1e;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #2b1055, #7597de);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .animated-bg span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+            border-radius: 50%;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-card:hover .game-img {
+            transform: scale(1.05);
+        }
+
+        .game-img-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .game-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .game-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+        }
+
+        .game-info {
+            padding: 1.5rem;
+        }
+
+        .game-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .game-description {
+            color: #cccccc;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .play-button {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, #6e48aa, #9e5594);
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .play-button:hover {
+            background: linear-gradient(135deg, #7e58ba, #ae65a4);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            margin-top: 3rem;
+        }
+
+        footer p {
+            color: #aaaaaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="animated-bg" id="animated-bg"></div>
+        <div class="header-content">
+            <h1>Arcade Games Collection</h1>
+            <p class="subtitle">Enjoy classic arcade games reimagined for the web. Select a game below to start playing!</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="games-grid" id="games-grid">
+            <!-- Game cards will be dynamically generated here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Arcade Games Collection. All games are created for educational and entertainment purposes.</p>
+    </footer>
+
+    <script>
+        // Create animated background elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedBg = document.getElementById('animated-bg');
+            
+            // Create animated background elements
+            for (let i = 0; i < 15; i++) {
+                const span = document.createElement('span');
+                span.style.width = Math.random() * 30 + 10 + 'px';
+                span.style.height = span.style.width;
+                span.style.left = Math.random() * 100 + '%';
+                span.style.animationDelay = Math.random() * 5 + 's';
+                span.style.animationDuration = Math.random() * 20 + 10 + 's';
+                span.style.opacity = Math.random() * 0.5 + 0.1;
+                animatedBg.appendChild(span);
+            }
+            
+            // Game data
+            const games = [
+                {
+                    id: 'tetris',
+                    title: 'Tetris',
+                    description: 'The classic block-stacking puzzle game. Arrange falling tetrominoes to create complete lines and score points.',
+                    path: 'tetris/index.html',
+                    features: [
+                        'Seven different tetrominoes',
+                        'Ghost piece preview',
+                        'Hold piece functionality',
+                        'Next piece queue',
+                        'T-spin detection'
+                    ]
+                },
+                {
+                    id: 'snake',
+                    title: 'Snake',
+                    description: 'Guide the snake to eat food and grow longer without hitting the walls or itself.',
+                    path: 'snake/index.html',
+                    features: [
+                        'Increasing difficulty',
+                        'Score tracking',
+                        'Speed progression',
+                        'Colorful design'
+                    ]
+                }
+            ];
+            
+            // Generate game cards
+            const gamesGrid = document.getElementById('games-grid');
+            
+            games.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'game-card';
+                gameCard.onclick = function() {
+                    window.location.href = game.path;
+                };
+                
+                // Create a canvas to generate a screenshot-like preview
+                const canvas = document.createElement('canvas');
+                canvas.width = 300;
+                canvas.height = 200;
+                const ctx = canvas.getContext('2d');
+                
+                // Generate a unique visual for each game
+                generateGamePreview(ctx, game.id);
+                
+                gameCard.innerHTML = `
+                    <div class="game-img-container">
+                        <img class="game-img" src="${canvas.toDataURL()}" alt="${game.title}">
+                        <div class="game-overlay"></div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">${game.title}</h3>
+                        <p class="game-description">${game.description}</p>
+                        <a href="${game.path}" class="play-button">Play Now</a>
+                    </div>
+                `;
+                
+                gamesGrid.appendChild(gameCard);
+            });
+            
+            // Function to generate game preview images
+            function generateGamePreview(ctx, gameId) {
+                ctx.fillStyle = '#1a1a2e';
+                ctx.fillRect(0, 0, 300, 200);
+                
+                if (gameId === 'tetris') {
+                    // Draw a tetris-like board
+                    const blockSize = 15;
+                    const gridWidth = 10;
+                    const gridHeight = 12;
+                    const offsetX = (300 - (gridWidth * blockSize)) / 2;
+                    const offsetY = (200 - (gridHeight * blockSize)) / 2;
+                    
+                    // Draw grid
+                    ctx.strokeStyle = '#333355';
+                    for (let x = 0; x <= gridWidth; x++) {
+                        ctx.beginPath();
+                        ctx.moveTo(offsetX + x * blockSize, offsetY);
+                        ctx.lineTo(offsetX + x * blockSize, offsetY + gridHeight * blockSize);
+                        ctx.stroke();
+                    }
+                    
+                    for (let y = 0; y <= gridHeight; y++) {
+                        ctx.beginPath();
+                        ctx.moveTo(offsetX, offsetY + y * blockSize);
+                        ctx.lineTo(offsetX + gridWidth * blockSize, offsetY + y * blockSize);
+                        ctx.stroke();
+                    }
+                    
+                    // Draw some tetromino blocks
+                    const colors = ['#00f0f0', '#f0f000', '#a000f0', '#00f000', '#f00000', '#0000f0', '#f0a000'];
+                    
+                    // I piece
+                    ctx.fillStyle = colors[0];
+                    for (let i = 0; i < 4; i++) {
+                        ctx.fillRect(offsetX + 3 * blockSize, offsetY + (2 + i) * blockSize, blockSize, blockSize);
+                    }
+                    
+                    // L piece
+                    ctx.fillStyle = colors[6];
+                    ctx.fillRect(offsetX + 6 * blockSize, offsetY + 5 * blockSize, blockSize, blockSize);
+                    for (let i = 0; i < 3; i++) {
+                        ctx.fillRect(offsetX + (5 + i) * blockSize, offsetY + 6 * blockSize, blockSize, blockSize);
+                    }
+                    
+                    // Some blocks at the bottom
+                    for (let i = 0; i < gridWidth; i++) {
+                        if (i !== 4 && i !== 5) {
+                            ctx.fillStyle = colors[i % colors.length];
+                            ctx.fillRect(offsetX + i * blockSize, offsetY + 11 * blockSize, blockSize, blockSize);
+                        }
+                    }
+                    
+                    for (let i = 0; i < gridWidth; i++) {
+                        ctx.fillStyle = colors[(i + 2) % colors.length];
+                        ctx.fillRect(offsetX + i * blockSize, offsetY + 10 * blockSize, blockSize, blockSize);
+                    }
+                    
+                } else if (gameId === 'snake') {
+                    // Draw a snake-like game
+                    const blockSize = 15;
+                    const gridWidth = 15;
+                    const gridHeight = 10;
+                    const offsetX = (300 - (gridWidth * blockSize)) / 2;
+                    const offsetY = (200 - (gridHeight * blockSize)) / 2;
+                    
+                    // Draw grid
+                    ctx.strokeStyle = '#333355';
+                    ctx.lineWidth = 0.5;
+                    for (let x = 0; x <= gridWidth; x++) {
+                        ctx.beginPath();
+                        ctx.moveTo(offsetX + x * blockSize, offsetY);
+                        ctx.lineTo(offsetX + x * blockSize, offsetY + gridHeight * blockSize);
+                        ctx.stroke();
+                    }
+                    
+                    for (let y = 0; y <= gridHeight; y++) {
+                        ctx.beginPath();
+                        ctx.moveTo(offsetX, offsetY + y * blockSize);
+                        ctx.lineTo(offsetX + gridWidth * blockSize, offsetY + y * blockSize);
+                        ctx.stroke();
+                    }
+                    
+                    // Draw snake
+                    ctx.fillStyle = '#4CAF50';
+                    const snakeBody = [
+                        {x: 7, y: 5},
+                        {x: 6, y: 5},
+                        {x: 5, y: 5},
+                        {x: 4, y: 5},
+                        {x: 3, y: 5},
+                        {x: 2, y: 5},
+                        {x: 2, y: 4},
+                        {x: 2, y: 3}
+                    ];
+                    
+                    snakeBody.forEach((segment, index) => {
+                        // Gradient color from head to tail
+                        const greenValue = 175 - (index * 5);
+                        ctx.fillStyle = `rgb(76, ${greenValue}, 80)`;
+                        
+                        ctx.fillRect(
+                            offsetX + segment.x * blockSize, 
+                            offsetY + segment.y * blockSize, 
+                            blockSize, 
+                            blockSize
+                        );
+                    });
+                    
+                    // Draw food
+                    ctx.fillStyle = '#FF5252';
+                    ctx.beginPath();
+                    ctx.arc(
+                        offsetX + 10 * blockSize + blockSize/2, 
+                        offsetY + 3 * blockSize + blockSize/2, 
+                        blockSize/2, 
+                        0, 
+                        Math.PI * 2
+                    );
+                    ctx.fill();
+                }
+                
+                // Add game title
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+                ctx.fillRect(0, 160, 300, 40);
+                
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 20px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(gameId.toUpperCase(), 150, 185);
+            }
+        });
+    </script>
+</body>
+</html> 
