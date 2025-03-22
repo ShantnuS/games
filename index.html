@@ -276,6 +276,18 @@
                         'Speed progression',
                         'Colorful design'
                     ]
+                },
+                {
+                    id: 'pong',
+                    title: 'Pong',
+                    description: 'Classic arcade table tennis game. Control your paddle to hit the ball and score points against the computer.',
+                    path: 'pong/index.html',
+                    features: [
+                        'Mouse and keyboard controls',
+                        'Computer opponent with adjustable difficulty',
+                        'Score tracking',
+                        'Responsive ball physics'
+                    ]
                 }
             ];
             
@@ -433,6 +445,45 @@
                         Math.PI * 2
                     );
                     ctx.fill();
+                } else if (gameId === 'pong') {
+                    // Draw a pong-like game
+                    const gameWidth = 280;
+                    const gameHeight = 160;
+                    const offsetX = (300 - gameWidth) / 2;
+                    const offsetY = (200 - gameHeight) / 2;
+                    
+                    // Draw game area
+                    ctx.fillStyle = '#000000';
+                    ctx.fillRect(offsetX, offsetY, gameWidth, gameHeight);
+                    ctx.strokeStyle = '#ffffff';
+                    ctx.strokeRect(offsetX, offsetY, gameWidth, gameHeight);
+                    
+                    // Draw center line
+                    ctx.strokeStyle = '#ffffff';
+                    ctx.setLineDash([5, 5]);
+                    ctx.beginPath();
+                    ctx.moveTo(150, offsetY);
+                    ctx.lineTo(150, offsetY + gameHeight);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                    
+                    // Draw paddles
+                    ctx.fillStyle = '#ffffff';
+                    // Left paddle (player)
+                    ctx.fillRect(offsetX + 10, offsetY + 60, 10, 80);
+                    // Right paddle (computer)
+                    ctx.fillRect(offsetX + gameWidth - 20, offsetY + 20, 10, 80);
+                    
+                    // Draw ball
+                    ctx.beginPath();
+                    ctx.arc(offsetX + 100, offsetY + 70, 8, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Draw score
+                    ctx.font = 'bold 24px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('3', offsetX + gameWidth/4, offsetY + 30);
+                    ctx.fillText('2', offsetX + gameWidth*3/4, offsetY + 30);
                 }
                 
                 // Add game title
